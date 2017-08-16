@@ -1,9 +1,14 @@
 'use strict';
-angular.module('confusionApp', []).controller('menuController', function() {
-  this.tab = 1;
-  this.filtText = '';
+//specify $scope and menucontroller for angular
+angular.module('confusionApp', [])
+    .controller('MenuController', ['$scope',function($scope) {
+      //this is where we introduce our variable ng-directives
+  $scope.tab = 1;
+  $scope.filtText = '';
+  $scope.showDetails = false;
+
   
-  var dishes = [
+  $scope.dishes = [
     {
       name:'Uthapizza',
       image: 'images/uthapizza.png',
@@ -45,26 +50,34 @@ angular.module('confusionApp', []).controller('menuController', function() {
     }
   ]; 
   
-  this.dishes = dishes;
+  //this.dishes = dishes; this is removed because dishes object is attached to scope
+  
 
-  this.select = function(setTab) {
-    this.tab = setTab;
+
+  $scope.select = function(setTab) {
+    $scope.tab = setTab;
     
     if (setTab === 2) {
-      this.filtText = "appetizer";
+      $scope.filtText = "appetizer";
     } 
     else if (setTab === 3) {
-      this.filtText = "mains";
+      $scope.filtText = "mains";
     }
     else if (setTab === 4) {
-      this.filtText = "dessert";
+      $scope.filtText = "dessert";
     }
     else {
-      this.filtText = "";
+      $scope.filtText = "";
     }
   };
   
-  this.isSelected = function (checkTab) {
-    return (this.tab === checkTab);
+  $scope.isSelected = function (checkTab) {
+    return ($scope.tab === checkTab);
   };
-});
+
+  //introduce our show details code
+  $scope.toggleDetails = function() {
+    $scope.showDetails = !$scope.showDetails;
+  };
+
+}]);
