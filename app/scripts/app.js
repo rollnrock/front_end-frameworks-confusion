@@ -74,10 +74,60 @@ angular.module('confusionApp', [])
   $scope.isSelected = function (checkTab) {
     return ($scope.tab === checkTab);
   };
-
   //introduce our show details code
   $scope.toggleDetails = function() {
     $scope.showDetails = !$scope.showDetails;
   };
 
-}]);
+}])
+
+//introduce contact controller
+    .controller('ContactController', ['$scope', function($scope) {
+
+            $scope.feedback = {mychannel:"", firstName:"", lastName:"",
+                               agree:false, email:"" };
+                               //check options for select
+             var channels = [{value:"tel", label:"Tel."},
+                             {value:"Email",label:"Email"}];
+
+                        $scope.channels = channels;
+                        //tracks to see if the user has selected the approprite channel selction
+            $scope.invalidChannelSelection = false;                   
+        }])   
+      //introduce feedbackController which is a child of contact controller
+      //the feedbackController can get anything that is nested under the
+      //contactController
+  .controller('FeedbackController', ['$scope', function($scope) {
+            //ng-submit button is clicked we have to call the 
+            //send feedback functon
+            $scope.sendFeedback = function() {
+
+                                console.log($scope.feedback);
+                              
+                  //if the user submits the button we check if the 
+                //checkbox is checked 
+                            if ($scope.feedback.agree && ($scope.feedback
+                              .mychannel == "")&& !$scope.feedback.mychannel) 
+                                {//if checkbox is ticked and feedback.my channel is 
+                                //an empty string invalidchannelselection
+                                  $scope.invalidChannelSelection = true;
+                                    console.log('incorrect');
+                                }
+                            else {
+                                  //else checkbox is ticked and invalid is true
+                                  $scope.invalidChannelSelection = false;
+                                  $scope.feedback = {
+                                        mychannel:"", firstName:"", lastName:"",
+                                                     agree:false, email:"" };
+                                  $scope.feedback.mychannel="";
+
+                                  $scope.feedbackForm.$setPristine();
+                                  console.log($scope.feedback);
+                                }    
+
+                          };
+
+
+        }])     
+
+;       

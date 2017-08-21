@@ -27,8 +27,8 @@
 
     <div class="container">
         <div class="row row-content" ng-controller="dishDetailController as dishctrl">
-            <div class="col-xs-12" >
-                <div class="media" >
+            <div class="col-xs-12">
+                <div class="media">
                   <div class="media-left media-middle">
                     <a href="#">
                     <img class="media-object img-thumbnaiil" ng-src={{dishctrl.dish.image}} alt="Uthappizza">
@@ -36,7 +36,8 @@
                   </div>
                   <div class="media-body">
                     <h2 class="media-heading">{{dishctrl.dish.name}}</h2>
-                    <span class="label label-danger">{{dishctrl.dish.label}}</span>
+                    <span class="label label-danger">{{dishctrl.dish.label}}
+                    </span>
                     <span class="badge">{{dishctrl.dish.price | currency}}</span></h2>
                     <p>{{dishctrl.dish.description}}</p>
                   </div>
@@ -47,7 +48,7 @@
                 <div class="form-inline">
                 <h4 class="inlineHeading"><strong>Customer Comments &nbsp;</strong>
                 <label for="sort"><small>Sort by</small></label>
-                <input type="search" ng-model="dishctrl.sort" >
+                <input type="search" ng-model="dishctrl.sort">
                 </input>
                 </h4>
                 </div>
