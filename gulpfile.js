@@ -17,7 +17,8 @@ var gulp = require('gulp'),
 
 
     gulp.task('jshint', function() {
-  return gulp.src('app/scripts/**/*.js')
+      //we change ('app/scripts/**/*.js') to ('app/*.html')
+  return gulp.src('app/*.html')
   .pipe(jshint())
   .pipe(jshint.reporter(stylish));
 });
@@ -76,11 +77,13 @@ gulp.task('browser-sync', ['default'], function () {
       'dist/**/*'
    ];
 
+   //change the index:"menu.html" to 'index.html' then we add reloadDelay:1000
    browserSync.init(files, {
       server: {
          baseDir: "dist",
-         index: "menu.html"
+         index: "index.html"
       }
+      reloadDelay:1000
    });
         // Watch any files in dist/, reload on change
   gulp.watch(['dist/**']).on('change', browserSync.reload);
